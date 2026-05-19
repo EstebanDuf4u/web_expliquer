@@ -25,7 +25,7 @@ jobs:
 
       - name: Build image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}:latest .
+          docker build -t ghcr.io/estebanduf4u/web_expliquer:latest .
 
       - name: Push image
         run: |
