@@ -5,17 +5,14 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copie des fichiers de dépendances en premier (optimise le cache Docker)
 COPY package.json package-lock.json* ./
 
 RUN npm ci --no-audit --no-fund
 
-# Copie du code source
 COPY . .
 
-# Build de production (génère /app/dist)
-RUN npm run build
-
+# force exécution via node (évite le binaire vite cassé)
+RUN node node_modules/vite/bin/vite.js build
 # ─────────────────────────────────────────────────────────────────────────────
 # ÉTAPE 2 — Serve (Nginx)
 # ─────────────────────────────────────────────────────────────────────────────
