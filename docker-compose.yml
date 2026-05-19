@@ -1,0 +1,24 @@
+services:
+  web-decrypte:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: web-decrypte-app
+    ports:
+      - "3000:80"          # Accès via http://localhost:3000
+    restart: unless-stopped
+
+  # ── Optionnel : mode développement avec hot-reload ────────────────────────
+  web-decrypte-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: web-decrypte-dev
+    ports:
+      - "5173:5173"        # Accès via http://localhost:5173
+    volumes:
+      - .:/app             # Montage du code source pour le hot-reload
+      - /app/node_modules  # Exclure node_modules du montage
+    profiles:
+      - dev                # Lancer avec: docker compose --profile dev up

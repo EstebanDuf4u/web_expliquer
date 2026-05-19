@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ──────────────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    font-family: 'Nunito', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #F5F2EC;   /* beige chaud — pas le slate-50 générique */
+    @apply text-slate-800;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+/* ── Utilitaires personnalisés ──────────────────────────────────────────────── */
+@layer components {
+  /* Carte standard — coins moins excessifs, fond légèrement chaud */
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-stone-200 p-6;
+  }
+
+  /* Badge de protocole */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-700;
+  }
+
+  /* Bouton principal */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-700 text-white
+           transition-all duration-150 active:scale-95 shadow-sm hover:shadow-md
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100;
+  }
+
+  /* Scrollbar discrète */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-200 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-300;
+  }
+}
